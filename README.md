@@ -13,7 +13,11 @@ Take the xinput1_3.dll and the ModLoader.ini files and place them next to SwGame
 
 Mods will be loaded from the folder SwGame/Content/Paks/LogicMods
 
+#Special Features
+	* You can enable or disable the console via the ini
+	* You can use the Ue4 Say function and add a /Print to the end to print to the modloader console
+	* More TBA
 
-### 3rd Party Software
+# 3rd Party Software
   * [feather-ini-parser](https://github.com/Turbine1991/cpp-feather-ini-parser)
   * [Minhook](https://github.com/TsudaKageyu/minhook)
