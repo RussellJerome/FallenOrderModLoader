@@ -1,0 +1,15 @@
+#pragma once
+#include <Windows.h>
+#include <inttypes.h>
+#include <Psapi.h>
+#include <string>
+#include <sstream>
+#include <iomanip>
+#include <iostream>
+#include "SDK/SDK.hpp"
+#include "Pattern.h"
+#include "Functions.h"
+#include "Hooks.h"
+#include "Globals.h"
+#include "Logger.h"
+#include "FObjectSpawnParameters.h"

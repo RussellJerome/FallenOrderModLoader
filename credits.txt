@@ -1,0 +1,6 @@
+﻿=== Fallen Order Mod Loader Developers ===
+Russell.J
+=== External Code Used ===
+TsudaKageyu/minhook
+Turbine1991/cpp-feather-ini-parser
+And Satisfactory Mod Loaders XInput hack

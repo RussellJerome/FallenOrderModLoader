@@ -1,1 +1,19 @@
 # FallenOrderModLoader
+A tool used to load Blueprint mods for the game Star Wars Jedi Fallen Order
+
+# Discord Server
+Join the Fallen Order Modding Discord [discord server](https://discord.gg/TBsZZYFN2r) to learn more about modding.
+
+# DISCLAIMER
+This software is provided by the author "as is". In no event shall the author be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including, but not limited to procurement of substitute goods or services; loss of use, data, or profits; or business interruption) however caused and on any 
+theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
+
+# Using the Fallen Order Mod Loader
+Take the xinput1_3.dll and the ModLoader.ini files and place them next to SwGame/Binaries/Win64/starwarsjedifallenorder.exe (the game install directory), and then just run the game.
+
+Mods will be loaded from the folder SwGame/Content/Paks/LogicMods
+
+
+### 3rd Party Software
+  * [feather-ini-parser](https://github.com/Turbine1991/cpp-feather-ini-parser)
+  * [Minhook](https://github.com/TsudaKageyu/minhook)

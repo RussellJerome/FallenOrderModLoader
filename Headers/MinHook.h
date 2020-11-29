@@ -1,0 +1,37 @@
+#pragma once
+#include <Windows.h>
+#include <Psapi.h>
+#include <string>
+#include "Logger.h"
+//#include <minhook.h>
+#include "../MinHook/include/MinHook.h"
+#pragma comment(lib,"MinHook/lib/libMinHook-x64-v141-mtd.lib")
+namespace Hook
+{
+	static void Init()
+	{
+		if (MH_Initialize() != MH_OK)
+		{
+			Log::Error("Failed to initialize MinHook");
+		}
+	}
+
+	template <typename T>
+	static void Add(DWORD_PTR pTarget, LPVOID pDetour, T** ppOriginal, std::string displayName = "")
+	{
+		if (MH_CreateHook((LPVOID)pTarget, pDetour, reinterpret_cast<LPVOID*>(ppOriginal)) != MH_OK)
+		{
+			Log::Error("Failed to create hook: %s", displayName.c_str());
+			return;
+		}
+
+		if (MH_EnableHook((LPVOID)pTarget) != MH_OK)
+		{
+			Log::Error("Failed to enable hook: %s", displayName.c_str());
+			return;
+		}
+
+		//Log::Info("Added hook: %s [0x%" PRIXPTR "]", displayName.c_str(), pTarget);
+		Log::Info("Added hook: %s", displayName.c_str());
+	}
+}
