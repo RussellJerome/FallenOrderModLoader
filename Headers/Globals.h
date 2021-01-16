@@ -8,5 +8,6 @@ class Global {
 public:
 	static std::vector<std::wstring> modnames;
 	static std::vector<SDK::AActor*> ModActors;
+	static SDK::AActor* ModLoaderActor;
 	static std::string GameName;
 };

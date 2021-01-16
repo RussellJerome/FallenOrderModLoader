@@ -36,11 +36,26 @@ namespace Hooks
 				}
 			}
 			Global::ModActors.clear();
+			Functions::FOutputDevice ar;
+			Functions::CallFunctionByNameWithArguments(Global::ModLoaderActor, L"CleanLoader", &ar, NULL, true);
+			Global::ModLoaderActor = nullptr;
 			if (Functions::addr_StaticLoadObject)
 			{
+				SDK::FTransform transform;
+				transform.Translation = Functions::makeVector(0, 0, 0);
+				transform.Rotation = Functions::makeQuat(0, 0, 0, 0);
+				transform.Scale3D = Functions::makeVector(1, 1, 1);
+				FActorSpawnParameters* spawnParams = &FActorSpawnParameters::FActorSpawnParameters();
+				SDK::UClass* ModActorObject = Functions::LoadClassFromString(L"/Game/ModLoaderContent/ModLoaderActor.ModLoaderActor_C", false);
+				if (ModActorObject)
+				{
+					Log::Info("Sucessfully Loaded ModLoader Pak");
+				}
+				Global::ModLoaderActor = Functions::SpawnActor(SDK::UWorld::GetWorld(), ModActorObject, &transform, spawnParams);
 				for (int i = 0; i < Global::modnames.size(); i++)
 				{
 					std::wstring CurrentMod;
+					//StartSpawningMods
 					CurrentMod = Global::modnames[i];
 					std::string str(CurrentMod.begin(), CurrentMod.end());
 					const std::wstring Path = L"/Game/Mods/" + CurrentMod + L"/ModActor.ModActor_C";
@@ -48,11 +63,7 @@ namespace Hooks
 					if (ModObject)
 					{
 						SDK::AActor* ModActor;
-						SDK::FTransform transform;
-						transform.Translation = Functions::makeVector(0, 0, 0);
-						transform.Rotation = Functions::makeQuat(0, 0, 0, 0);
-						transform.Scale3D = Functions::makeVector(1, 1, 1);
-						FActorSpawnParameters* spawnParams = &FActorSpawnParameters::FActorSpawnParameters();
+						
 						ModActor = Functions::SpawnActor(SDK::UWorld::GetWorld(), ModObject, &transform, spawnParams);
 						if (ModActor)
 						{
@@ -77,12 +88,13 @@ namespace Hooks
 		{
 			if (Actor->Class == SDK::ABP_Hero_C::StaticClass())
 			{
+				Functions::FOutputDevice ar;
+				Functions::CallFunctionByNameWithArguments(Global::ModLoaderActor, L"PostLoaderStart", &ar, NULL, true);
 				for (int i = 0; i < Global::ModActors.size(); i++)
 				{
 					SDK::AActor* CurrentModActor = Global::ModActors[i];
 					if (CurrentModActor != nullptr)
 					{
-						Functions::FOutputDevice ar;
 						Functions::CallFunctionByNameWithArguments(CurrentModActor, L"PostBeginPlay", &ar, NULL, true);
 					}
 				}

@@ -68,11 +68,11 @@ namespace Functions
 	DWORD __stdcall InitFunctionCalls(LPVOID)
 	{
 		
-		addr_StaticLoadObject = (DWORD_PTR)Pattern::Find("40 55 53 56 57 41 54 41 55 41 56 41 57 48 8D AC 24 18 FE FF FF 48 81 EC E8 02 00 00 48 8B 05 25 1F E2 FA");
+		addr_StaticLoadObject = 0x148894D70;
 
-		addr_SpawnActor = (DWORD_PTR)Pattern::Find("48 89 E0 55 53 56 57 41 54 41 55 41 56 41 57 48 8D A8 F8 FE FF FF 48 81 EC C8 01 00 00 0F 29 78 98");
+		addr_SpawnActor = 0x151C4A9F0;
 
-		addr_CallFunctionByNameWithArguments = (DWORD_PTR)Pattern::Find("40 55 53 56 57 41 54 41 55 41 56 41 57 48 81 EC F8 02 00 00 48 8D 6C 24 30");
+		addr_CallFunctionByNameWithArguments = 0x1488731A0;
 		return NULL;
 	}
 };
