@@ -9,7 +9,7 @@ This software is provided by the author "as is". In no event shall the author be
 theory of liability, whether in contract, strict liability, or tort (including negligence or otherwise) arising in any way out of the use of this software, even if advised of the possibility of such damage.
 
 # Using the Fallen Order Mod Loader
-Take the xinput1_3.dll and the ModLoader.ini files and place them next to SwGame/Binaries/Win64/starwarsjedifallenorder.exe (the game install directory), and then just run the game.
+Take the SwGame folder and drag it into your game directory and then just run the game.
 
 Mods will be loaded from the folder SwGame/Content/Paks/LogicMods
 
