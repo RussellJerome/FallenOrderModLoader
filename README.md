@@ -1,6 +1,6 @@
 # FallenOrderModLoader
 A tool used to load Blueprint mods for the game Star Wars Jedi Fallen Order
-
+* Code will be better eventually don't crucify me
 # Discord Server
 Join the Fallen Order Modding Discord [discord server](https://discord.gg/TBsZZYFN2r) to learn more about modding.
 
