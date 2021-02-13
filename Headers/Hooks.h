@@ -24,6 +24,19 @@ namespace Hooks
 			{
 				SDK::InitSDK();
 				Log::Info("Engine Classes Loaded");
+
+				SDK::FTransform transform;
+				transform.Translation = Functions::makeVector(0, 0, 0);
+				transform.Rotation = Functions::makeQuat(0, 0, 0, 0);
+				transform.Scale3D = Functions::makeVector(1, 1, 1);
+				FActorSpawnParameters* spawnParams = &FActorSpawnParameters::FActorSpawnParameters();
+				SDK::UClass* ModActorObject = Functions::LoadClassFromString(L"/Game/ModLoaderContent/ModLoaderActor.ModLoaderActor_C", false);
+				if (ModActorObject)
+				{
+					Log::Info("Sucessfully Loaded ModLoader Pak");
+				}
+				Global::ModLoaderActor = Functions::SpawnActor(SDK::UWorld::GetWorld(), ModActorObject, &transform, spawnParams);
+
 				FirstLoad = false;
 			}
 			for (int i = 0; i < Global::ModActors.size(); i++)
@@ -38,7 +51,6 @@ namespace Hooks
 			Global::ModActors.clear();
 			Functions::FOutputDevice ar;
 			Functions::CallFunctionByNameWithArguments(Global::ModLoaderActor, L"CleanLoader", &ar, NULL, true);
-			Global::ModLoaderActor = nullptr;
 			if (Functions::addr_StaticLoadObject)
 			{
 				SDK::FTransform transform;
@@ -46,12 +58,6 @@ namespace Hooks
 				transform.Rotation = Functions::makeQuat(0, 0, 0, 0);
 				transform.Scale3D = Functions::makeVector(1, 1, 1);
 				FActorSpawnParameters* spawnParams = &FActorSpawnParameters::FActorSpawnParameters();
-				SDK::UClass* ModActorObject = Functions::LoadClassFromString(L"/Game/ModLoaderContent/ModLoaderActor.ModLoaderActor_C", false);
-				if (ModActorObject)
-				{
-					Log::Info("Sucessfully Loaded ModLoader Pak");
-				}
-				Global::ModLoaderActor = Functions::SpawnActor(SDK::UWorld::GetWorld(), ModActorObject, &transform, spawnParams);
 				for (int i = 0; i < Global::modnames.size(); i++)
 				{
 					std::wstring CurrentMod;
