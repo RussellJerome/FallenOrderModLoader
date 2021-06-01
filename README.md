@@ -1,3 +1,4 @@
+# DISCONTINUED, NEW PROGRAM FOR UE4 BP MODDING: https://github.com/RussellJerome/UnrealModLoader
 # FallenOrderModLoader
 A tool used to load Blueprint mods for the game Star Wars Jedi Fallen Order
 * Code will be better eventually don't crucify me
