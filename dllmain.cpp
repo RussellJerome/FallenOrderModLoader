@@ -6,7 +6,7 @@
 #include "dllmain.h"
 #include "INI/INI.h"
 
-namespace fs = std::experimental::filesystem;
+namespace fs = std::filesystem;
 HANDLE                      m_hConsole;
 WORD                        m_currentConsoleAttr;
 CONSOLE_SCREEN_BUFFER_INFO   csbi;
@@ -40,7 +40,7 @@ void ScanLoadedPaks()
 
 void StartUpLoader()
 {
-	Log::Info("Fallen Order ModLoader V1.0.0 ~Created by Russell.J");
+	Log::Info("Fallen Order ModLoader V1.1.1 ~Created by Russell.J");
 	Log::Info("Injected successfully...");
 	INI::PARSE_FLAGS = INI::PARSE_COMMENTS_ALL | INI::PARSE_COMMENTS_SLASH | INI::PARSE_COMMENTS_HASH;
 	INI ini("ModLoaderInfo.ini", true);

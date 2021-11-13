@@ -10,7 +10,7 @@
 #include "dllmain.h"
 #include <algorithm>
 #include "MinHook.h"
-namespace fs = std::experimental::filesystem;
+namespace fs = std::filesystem;
 bool FirstLoad = true;
 namespace Hooks
 {
@@ -29,13 +29,13 @@ namespace Hooks
 				transform.Translation = Functions::makeVector(0, 0, 0);
 				transform.Rotation = Functions::makeQuat(0, 0, 0, 0);
 				transform.Scale3D = Functions::makeVector(1, 1, 1);
-				FActorSpawnParameters* spawnParams = &FActorSpawnParameters::FActorSpawnParameters();
+				FActorSpawnParameters spawnParams = FActorSpawnParameters::FActorSpawnParameters();
 				SDK::UClass* ModActorObject = Functions::LoadClassFromString(L"/Game/ModLoaderContent/ModLoaderActor.ModLoaderActor_C", false);
 				if (ModActorObject)
 				{
 					Log::Info("Sucessfully Loaded ModLoader Pak");
 				}
-				Global::ModLoaderActor = Functions::SpawnActor(SDK::UWorld::GetWorld(), ModActorObject, &transform, spawnParams);
+				Global::ModLoaderActor = Functions::SpawnActor(SDK::UWorld::GetWorld(), ModActorObject, &transform, &spawnParams);
 
 				FirstLoad = false;
 			}
@@ -57,7 +57,7 @@ namespace Hooks
 				transform.Translation = Functions::makeVector(0, 0, 0);
 				transform.Rotation = Functions::makeQuat(0, 0, 0, 0);
 				transform.Scale3D = Functions::makeVector(1, 1, 1);
-				FActorSpawnParameters* spawnParams = &FActorSpawnParameters::FActorSpawnParameters();
+				FActorSpawnParameters spawnParams = FActorSpawnParameters::FActorSpawnParameters();
 				for (int i = 0; i < Global::modnames.size(); i++)
 				{
 					std::wstring CurrentMod;
@@ -70,7 +70,7 @@ namespace Hooks
 					{
 						SDK::AActor* ModActor;
 						
-						ModActor = Functions::SpawnActor(SDK::UWorld::GetWorld(), ModObject, &transform, spawnParams);
+						ModActor = Functions::SpawnActor(SDK::UWorld::GetWorld(), ModObject, &transform, &spawnParams);
 						if (ModActor)
 						{
 							Global::ModActors.push_back(ModActor);
@@ -129,8 +129,8 @@ namespace Hooks
 	DWORD __stdcall InitHooks(LPVOID)
 	{
 		Hook::Init();
-		DWORD_PTR GameStateInit_addy = (DWORD_PTR)Pattern::Find("40 53 48 83 EC 20 48 8B 41 10 48 8B D9 48 8B 91 C0 03 00 00");
-		DWORD_PTR Begin_addy = (DWORD_PTR)Pattern::Find("49 89 E3 48 81 EC 28 01 00 00 48 8B 05 F7 A0 03 F9 48 31 E0");
+		DWORD_PTR GameStateInit_addy = (DWORD_PTR)Pattern::Find("40 53 48 83 EC 20 48 8B 41 10 48 8B D9 48 8B 91");
+		DWORD_PTR Begin_addy = (DWORD_PTR)Pattern::Find("4C 8B DC 48 81 EC ? ? ? ? 48 8B 05 ? ? ? ? 48 33 C4 48 89 84 24 ? ? ? ? 48 8B 01 F3 0F 10 89");
 		DWORD_PTR Say_addy = (DWORD_PTR)Pattern::Find("33 C0 4C 8B C2 48 89 44 24 08 33 D2");
 		if (GameStateInit_addy)
 		{
